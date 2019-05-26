@@ -1,0 +1,71 @@
+﻿@model IEnumerable<CsvFileReaderApp.Controllers.CsvFields>
+
+@{
+    ViewBag.Title = "SavedUsers";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width" />
+    <title>SavedUsers</title>
+</head>
+<body class="text-center">
+    <br />
+    <h3>Data below is valid & saved to Database ...</h3>
+    <br />
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ZipCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr style="background-color: @(item.ErrorMsg == null ? "white" : "red")">
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ZipCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+            </tr>
+        }
+    </table>
+    <br />
+
+    <div>
+        @Html.ActionLink("Back to Home", "Index")
+    </div>
+    <footer>
+        <h6>&copy; @DateTime.Now.Year - Csv file reader App by: Dominik Polzer</h6>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width" />
+    <title>Csv file reader</title>
+</head>
+<body class="text-center">
+    <h1>Read data from CSV file</h1>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="button" class="btn btn-outline-success" value="LoadFile" onclick="location.href='@Url.Action("LoadFile","Home")'" data-toggle="tooltip" data-placement="right" title="Load data from local csv file" />
+        @*<input type="file" name="postedFile" />
+            <br />*@
+
+    }
+    <hr />
+    <footer>
+        <h6>Description:</h6>
+        <p> App loads data from local csv file into grid and saves only valid data to SQL Server DB.</p>
+        <p>Valid data: Data with valid Zip Code</p>
+        <h6>&copy; @DateTime.Now.Year - Csv file reader App by: Dominik Polzer</h6>
+    </footer>
+</body>
+</html>
