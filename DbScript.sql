@@ -33,7 +33,7 @@ ELSE
 BEGIN
 --return server log if not unique-
 			 
-	 RAISERROR ('User is already exists in DB',-- Message text.  
+	 RAISERROR ('User already exists in DB',-- Message text.  
                16, -- Severity.  
                1 -- State.  
                )WITH LOG; --log to server log
