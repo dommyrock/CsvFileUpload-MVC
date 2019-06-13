@@ -53,5 +53,7 @@ namespace CsvFileReaderApp.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Proc_InsertData", firstNameParameter, lastNameParameter, zipCodeParameter, cityParameter, phoneParameter);
         }
+
+        public System.Data.Entity.DbSet<CsvFileReaderApp.OData.CsvFileReaderModel> CsvFileReaderModels { get; set; }
     }
 }

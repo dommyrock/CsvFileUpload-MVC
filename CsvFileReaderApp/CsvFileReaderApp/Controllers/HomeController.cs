@@ -11,18 +11,19 @@ namespace CsvFileReaderApp.Controllers
         private CsvContext dbContext = new CsvContext();
 
         //Get file path
-        private string path = AppDomain.CurrentDomain.BaseDirectory + @"\Content\podaci.csv";
+        private string path = AppDomain.CurrentDomain.BaseDirectory + @"\Content\podaci.csv";//get app base dir and concat to csv folder
 
         public ActionResult Index()
         {
             return View();
         }
 
+        private ImportFromFile import = new ImportFromFile();
+
         [HttpGet]
         public ActionResult LoadFile()
         {
-            ImportFromFile import = new ImportFromFile();
-            List<CsvFields> list = import.ImportCSV(path);
+            List<CsvFields> list = import.ImportCSV(path); //maybe static list instead or store to cache ?
 
             return View(list);
         }
@@ -30,7 +31,6 @@ namespace CsvFileReaderApp.Controllers
         //Returns view of only saved users
         public ActionResult SaveFile()
         {
-            ImportFromFile import = new ImportFromFile();
             List<CsvFields> list = import.ImportCSV(path);
             var savedUsers = import.SaveIfValid(list, dbContext);
 

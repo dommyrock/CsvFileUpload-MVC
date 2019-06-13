@@ -19,12 +19,14 @@ namespace CsvFileReaderApp.Controllers
         /// <returns></returns>
         public List<CsvFields> ImportCSV(string path)
         {
+            //Read CSV
             List<string> lines = new List<string>(File.ReadLines(path));
+            //Output all CSV rows
             List<CsvFields> output = new List<CsvFields>();
             foreach (string line in lines)
             {
                 string[] columns = line.Split(';');
-                CsvFields row = new CsvFields(columns[0], columns[1], columns[2], columns[3], columns[4]);
+                CsvFields row = new CsvFields(columns[0], columns[1], columns[2], columns[3], columns[4]);//Map
                 if (!Regex.IsMatch(row.ZipCode, @"^\d{5}$"))//match zipCode
                 {
                     row.ErrorMsg = "Zip code Invalid";
@@ -36,6 +38,7 @@ namespace CsvFileReaderApp.Controllers
 
         public List<CsvFields> SaveIfValid(List<CsvFields> list, CsvContext dbContext)
         {
+            //Outputs only valid /saved rows
             List<CsvFields> output = new List<CsvFields>();
             foreach (var item in list)
             {
@@ -54,7 +57,7 @@ namespace CsvFileReaderApp.Controllers
                 }
                 catch (Exception ex)//handle duplicate item
                 {
-                    item.ErrorMsg = ex.Message;
+                    item.ErrorMsg = ex.Message;//this is kinda usless ...never gets saved anywhere (since we dont save it to DB )
                 }
             }
             return output;
