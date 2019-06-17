@@ -241,3 +241,6 @@ E:\Programming\GithubRepo\CsvFileUpload-MVC\CsvFileReaderApp\CsvFileReaderApp\bi
 E:\Programming\GithubRepo\CsvFileUpload-MVC\CsvFileReaderApp\CsvFileReaderApp\bin\ru\System.Spatial.resources.dll
 E:\Programming\GithubRepo\CsvFileUpload-MVC\CsvFileReaderApp\CsvFileReaderApp\bin\zh-Hans\System.Spatial.resources.dll
 E:\Programming\GithubRepo\CsvFileUpload-MVC\CsvFileReaderApp\CsvFileReaderApp\bin\zh-Hant\System.Spatial.resources.dll
+E:\Programming\GithubRepo\CsvFileUpload-MVC\CsvFileReaderApp\CsvFileReaderApp\bin\System.Web.Cors.dll
+E:\Programming\GithubRepo\CsvFileUpload-MVC\CsvFileReaderApp\CsvFileReaderApp\bin\System.Web.Http.Cors.dll
+E:\Programming\GithubRepo\CsvFileUpload-MVC\CsvFileReaderApp\CsvFileReaderApp\bin\System.Web.Http.Cors.xml

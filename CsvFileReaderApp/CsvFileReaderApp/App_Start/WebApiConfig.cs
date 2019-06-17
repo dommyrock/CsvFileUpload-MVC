@@ -21,9 +21,11 @@ namespace CsvFileReaderApp
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.MediaTypeMappings.Add(
                 new RequestHeaderMapping("Accept", "text/html", StringComparison.InvariantCultureIgnoreCase, true, "application/json"));
             GlobalConfiguration.Configuration.EnableDependencyInjection();
+            config.EnableCors();
 
+            // Web API routes
             config.MapHttpAttributeRoutes();
-            //////config.MapHttpAttributeRoutes(new CentralizedPrefixProvider("odata"));
+            //config.MapHttpAttributeRoutes(new CentralizedPrefixProvider("odata"));//custom class for prefixing "odata"
             //////config.Filters.Add(new ExceptionHandlingAttribute());
 
             config.Routes.MapHttpRoute(
@@ -31,7 +33,7 @@ namespace CsvFileReaderApp
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-            //This config alone is enough for AUTO-generated odata controller "PodacisController"
+            //This config BELLOW  is enough alone for AUTO-generated odata controller "PodacisController"
             ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
             builder.EntitySet<Podaci>("Podacis");
             config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());

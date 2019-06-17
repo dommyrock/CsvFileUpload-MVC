@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using CsvFileReaderApp.Models;
-using Microsoft.AspNet.OData;
 using Microsoft.AspNet.OData.Query;
 
 namespace CsvFileReaderApp.OData
 {
     [RoutePrefix("csv")]
-    public class CsvFileReaderController : /*ODataController*/ ApiController
+    [EnableCors(origins: "http://localhost:3000", headers: "*", methods: "*")]//The CORS specification introduces several new HTTP headers that enable cross-origin requests.
+    public class CsvFileReaderController : /*ODataController*/ ApiControllerBase //Defines CreatePagedActionResult
     {
         //Full path https://localhost ...odata/controller/api/file{id}
 
@@ -17,7 +18,7 @@ namespace CsvFileReaderApp.OData
 
         private CsvContext dbContext = new CsvContext();
 
-        //http://localhost:62174/all (here we just replace path directly with action "all" !!!!
+        //http://localhost:62174/csv/all (here we just replace path directly with action "all" !!!!
         [HttpGet]
         [Route("all")]
         public IQueryable<Podaci> GetPodacis()
@@ -42,7 +43,7 @@ namespace CsvFileReaderApp.OData
         public IHttpActionResult GetFile(ODataQueryOptions<Podaci> oDataQueryOptions)//need to pass ?$top,filter,orderby ... options to new method that filters data(DM has example) "PagedResultCreator" + "PagedResult" classes (Add em )
         {
             List<Podaci> list = dbContext.Podacis.ToList();
-            IQueryable<CsvFileReaderModel> podaciModels = list.Select(item => new CsvFileReaderModel
+            IQueryable<Podaci> podaciModels = list.Select(item => new Podaci
             {
                 Id = item.Id,
                 FirstName = item.FirstName,
@@ -55,7 +56,7 @@ namespace CsvFileReaderApp.OData
             {
                 return NotFound();
             }
-            return Ok(podaciModels);
+            return CreatePagedActionResult(podaciModels, oDataQueryOptions);//CreatePagedActionResult contained in abstract class ... inherited by ApiControllerBase
         }
     }
 }
